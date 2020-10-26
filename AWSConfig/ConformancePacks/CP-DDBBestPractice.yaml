@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: This pack contains AWS Config rules based on the best practice guidelines for Amazon DynamoDB..  
+Parameters:
+  ConformancePackDeliveryBucket:
+    Type: String
+    Description: AWS Config stores intermediate files while processing conformance pack template. Please enter thename of the bucket that has been configured already for conformance pack to deliver to deliver findings. 
+Resources:
+  ConformancePack:
+    Type: 'AWS::Config::ConformancePack'
+    Properties: 
+      ConformancePackName: IAMBestPractices
+      DeliveryS3Bucket: !Ref ConformancePackDeliveryBucket
+      TemplateBody: |-
+        Resources:
+          DynamoDbAutoscalingEnabled:
+            Properties:
+              ConfigRuleName: DynamoDbAutoscalingEnabled
+              Description: "This rule checks whether Auto Scaling is enabled on your DynamoDB tables. Optionally you can set the read and write capacity units for the table."
+              MaximumExecutionFrequency: Six_Hours
+              Scope:
+                ComplianceResourceTypes:
+                  - "AWS::DynamoDB::Table"
+              Source:
+                Owner: AWS
+                SourceIdentifier: DYNAMODB_AUTOSCALING_ENABLED
+            Type: "AWS::Config::ConfigRule"
+          DynamoDbTableEncryptionEnabled:
+            Properties:
+              ConfigRuleName: DynamoDbTableEncryptionEnabled
+              Description: "Checks whether the Amazon DynamoDB tables are encrypted and checks their status. The rule is compliant if the status is enabled or enabling."
+              Scope:
+                ComplianceResourceTypes:
+                  - "AWS::DynamoDB::Table"
+              Source:
+                Owner: AWS
+                SourceIdentifier: DYNAMODB_TABLE_ENCRYPTION_ENABLED
+            Type: "AWS::Config::ConfigRule"
+          DynamoDbThroughputLimitCheck:
+            Properties:
+              ConfigRuleName: DynamoDbThroughputLimitCheck
+              Description: "Checks whether provisioned DynamoDB throughput is approaching the maximum limit for your account."
+              MaximumExecutionFrequency: Six_Hours
+              Source:
+                Owner: AWS
+                SourceIdentifier: DYNAMODB_THROUGHPUT_LIMIT_CHECK
+            Type: "AWS::Config::ConfigRule"
