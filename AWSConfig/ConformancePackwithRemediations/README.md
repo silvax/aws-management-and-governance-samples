@@ -5,7 +5,7 @@
 
 Provides AWS Config Conformance Packs with Remediations for several PCI Compliance related violations  
 
-Template 1 first provisions AWS Systems Manager Automation Documents as well as all the required pre-reqs. The Conformance Pack templates are deployed via the CLI and they leverages the SSM documents within AWS Config Remediation Rules in the format of Conformance Packs.
+The first template provisions AWS Systems Manager (SSM) Automation Documents as well as all the required pre-reqs. The Conformance Pack templates are deployed via the CLI and they leverage the SSM documents within AWS Config Remediation Rules in the format of custom AWS Config Conformance Packs.
 
 
 ## How it Works
