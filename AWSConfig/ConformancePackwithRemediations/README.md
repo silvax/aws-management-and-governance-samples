@@ -42,8 +42,7 @@ aws configservice put-conformance-pack --conformance-pack-name="confpack-pci-1" 
 
 * Installs aws-pci-conformancepack-v1-[1,2,3].yml for custom AWS Config Conformance Packs with Remediation for PCI
 
-## COVERAGE
+## Coverage
 
-![](coverage/AWSPCIConformancePacksAutoHealingCoverage.xlsx)
+The converage matrix - ![](https://github.com/kmmahaj/aws-management-and-governance-samples/tree/master/AWSConfig/ConformancePackwithRemediations/coverage) provides the current coverage of these PCI related remediations relative to the Operational Best Practices for PCI Conformance Pack
 
-## @kmmahaj
