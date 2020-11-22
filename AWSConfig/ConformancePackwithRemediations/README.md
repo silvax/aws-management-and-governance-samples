@@ -44,6 +44,6 @@ aws configservice put-conformance-pack --conformance-pack-name="confpack-pci-1" 
 
 ## COVERAGE
 
-The [Coverage Matrix](https://github.com/kmmahaj/config/blob/master/aws-conformancepack-pci/coverage/AWS%20SecurityHub%20Benchmarks-Coverage-v1.xlsx) provides the current coverage of this solution wrt the PCI Benchmarks
+The [Coverage Matrix] ![](coverage/AWSPCIConformancePacksAutoHealingCoverage.xlsx) provides the current coverage of this solution wrt the PCI Benchmarks
 
 ## @kmmahaj
