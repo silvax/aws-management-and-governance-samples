@@ -44,5 +44,5 @@ aws configservice put-conformance-pack --conformance-pack-name="confpack-pci-1" 
 
 ## Coverage
 
-The [converage matrix](./coverage/AWSPCIConformancePacksAutoHealingCoverage.xlsx) provides the current coverage of these PCI related remediations relative to the Operational Best Practices for PCI Conformance Pack
+The [coverage matrix](./coverage/AWSPCIConformancePacksAutoHealingCoverage.xlsx) provides the current coverage of these PCI related remediations relative to the Operational Best Practices for PCI Conformance Pack
 
