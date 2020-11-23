@@ -1443,6 +1443,55 @@ Resources:
                 subnet2id: '{{subnet2id}}'
                 securitygroupid: '{{securitygroupid}}'
 
+
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+# [API GW] Ensures Amazon API Gateway APIs have the endpointConfigurationType of Private. 
+# -------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  APIGWEndpointTypeCheck:
+    Type: AWS::SSM::Document
+    Properties:
+      DocumentType: Automation
+      Name: Custom-APIGWEndpointTypeCheck
+      Content:
+        schemaVersion: '0.3'
+        assumeRole: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${AutomationAssumeRole}"
+        parameters:
+          AutomationAssumeRole:
+            type: String
+            default: !Sub "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${AutomationAssumeRole}"
+          resourceid:
+            type: String        
+        mainSteps:
+          - name: remediate_privateapi
+            action: 'aws:executeScript'
+            inputs:
+              Runtime: python3.7
+              Handler: script_handler
+              Script: |-
+                def script_handler(events, context):
+                    client = boto3.client('apigateway')
+                    resourceid = event['resourceid']
+                    restApiId = resourceid.rsplit('/', 1)[1]
+                    response = client.update_rest_api(
+                        restApiId=restApiId,
+                        patchOperations=[
+                            {
+                                'op': 'replace',
+                                'path': '/endpointConfiguration/types/EDGE',
+                                'value': 'PRIVATE',
+                            },                    
+                            {
+                                'op': 'replace',
+                                'path': '/endpointConfiguration/types/REGIONAL',
+                                'value': 'PRIVATE',
+                            },
+                        ]
+                    )
+              InputPayload:
+                AutomationAssumeRole: '{{AutomationAssumeRole}}'
+                resourceid: '{{resourceid}}'
+
 # -------------------------------------------------------------------------------------------------------------------------------------------------------
 # [PCI.S3.3] S3 buckets should have cross-region replication enabled
 # -------------------------------------------------------------------------------------------------------------------------------------------------------

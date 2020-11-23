@@ -14,9 +14,12 @@ The first template provisions AWS Systems Manager (SSM) Automation Documents as 
 - Provisions custom AWS Systems Manager automation documents for remediation. These documents are used to provide automated remediations within the provisioned AWS Config rule using the AWS:Config:RemediationConfiguration CloudFormation construct in the AWS Config Conformance Pack. 
 - Provisions pre-requisites for the AWS Config Conformance Pack deployment such as the AWS Systems Manager automation role, S3 buckets for logging and replication for S3 related remediations and CloudWatch logs and CloudWatch role for AWS CloudTrail related remediations for PCI compliance
 3. Custom AWS Config Conformance Packs
-- aws-pci-conformancepack-v1-1.yml – Provisions a custom AWS Config Conformance Pack for the detection and remediation for Amazon EC2, AWS Auto Scaling and AWS Lambda based  PCI Compliance violations
-- aws-pci-conformancepack-v1-2.yml - Provisions a custom AWS Config Conformance Pack for the detection and remediation for AWS CloudTrail, AWS KMS and AWS CodeBuild based CIS and PCI ompliance violations 
-- aws-pci-conformancepack-v1-3.yml - Provisions a custom AWS Config Conformance Pack for the detection and remediation for Amazon Redshift, AWS RDS and AWS IAM based CIS anD PCI Compliance violations.
+- aws-pci-conformancepack-v1-1.yml – Provisions a custom AWS Config Conformance Pack for the detection and remediation for Amazon EC2, AWS Auto Scaling and AWS Lambda based PCI Compliance violations
+- aws-pci-conformancepack-v1-2.yml - Provisions a custom AWS Config Conformance Pack for the detection and remediation for AWS CloudTrail, AWS KMS and AWS CodeBuild based PCI ompliance violations 
+- aws-pci-conformancepack-v1-3.yml - Provisions a custom AWS Config Conformance Pack for the detection and remediation for Amazon Redshift, AWS RDS and AWS IAM based PCI Compliance violations.
+- aws-pci-conformancepack-v1-4.yml - Provisions a custom AWS Config Conformance Pack for the detection and remediation for Amazon S3 based PCI Compliance violations.
+- aws-pci-conformancepack-v1-5.yml - Provisions a custom AWS Custom Conformance Pack for detection and remediation of AWS API Gateway APIs that are not Private
+
 
 
 ## Solution Design
@@ -24,7 +27,7 @@ The first template provisions AWS Systems Manager (SSM) Automation Documents as 
 ![](images/arch-diagram1.png)
 
 ## Prerequisites
-1.	Custom AWS Config Conformance Packs - Set up prerequisites for deploying and building with both AWS Config Conformance Packs as well as custom AWS Config Conformance Packs with remediations. Refer to AWS documentation or this excellent blog for pre-reqs - https://aws.amazon.com/blogs/mt/introducing-aws-config-conformance-packs/
+1.	Custom AWS Config Conformance Packs - Set up prerequisites for deploying and building with both AWS Config Conformance Packs as well as custom AWS Config Conformance Packs with remediations. Refer to AWS documentation or this blog for pre-reqs - https://aws.amazon.com/blogs/mt/introducing-aws-config-conformance-packs/
 
 
 
@@ -40,7 +43,7 @@ The first template provisions AWS Systems Manager (SSM) Automation Documents as 
 aws configservice put-conformance-pack --conformance-pack-name="confpack-pci-1" --template-s3-uri="s3://s3-pciautohealconfpack-<ACCOUNT_ID>-<REGION>/aws-pci-conformancepack-v1-1.yml" --delivery-s3-bucket="config-bucket-<ACCOUNT_ID>"
 ~~~
 
-* Installs aws-pci-conformancepack-v1-[1,2,3].yml for custom AWS Config Conformance Packs with Remediation for PCI
+* Install aws-pci-conformancepack-v1-[1,2,3,4,5 ].yml for custom AWS Config Conformance Packs with Remediation for PCI
 
 ## Coverage
 
